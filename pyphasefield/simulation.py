@@ -191,6 +191,9 @@ class Simulation:
         E.g.: If we have T0 stored at t=1 second, T1 stored at t=2 seconds, the temperature
             profile at t=1.25 seconds = 0.75*T0 + 0.25*T1
         """
+		
+		#commenting this out for Diffusion Tutorial
+		"""
         self._temperature_type = "file"
         self._
         self.t_index = 1
@@ -217,6 +220,7 @@ class Simulation:
             array = self.T0*(self.t_end - dt*step)/(self.t_end-self.t_start) + self.T1*(dt*step-self.t_start)/(self.t_end-self.t_start)
             t_field = Field(data=array, name="Temperature (K)")
             self.temperature = t_field
+		"""
         return
 
     def update_thermal_field(self):
@@ -227,6 +231,8 @@ class Simulation:
             self.temperature.data += self._cooling_rate_Kelvin_per_second*self._time_step_in_seconds
             return
         elif(self._temperature_type == "file"):
+			#commenting this out for Diffusion Tutorial
+			"""
             dt = self.get_time_step_length()
             step = self.get_time_step_counter()
             if(dt*step > t_end):
@@ -243,7 +249,8 @@ class Simulation:
                     self.t_end, point_data1, cell_data0 = reader.read_data(self.t_index)
                     self.T1 = expand_T_array(point_data1['T'], nbc)
             self.temperature.data = self.T0*(self.t_end - dt*step)/(self.t_end-self.t_start) + self.T1*(dt*step-self.t_start)/(self.t_end-self.t_start)
-            return
+            """
+			return
         if self._temperature_type not in ["isothermal", "gradient", "file"]:
             raise ValueError("Unknown temperature profile.")
 
