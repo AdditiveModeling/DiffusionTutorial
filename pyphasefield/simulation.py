@@ -1,5 +1,4 @@
 import numpy as np
-import meshio as mio
 from .field import Field
 from . import Engines
 from pathlib import Path
